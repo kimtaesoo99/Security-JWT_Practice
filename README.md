@@ -58,3 +58,32 @@
     // 강제로 시큐리티의 세션에 접근하여 값 저장
     SecurityContextHolder.getContext().setAuthentication(authentication);
 ```
+
+
+
+<img width="1255" alt="스크린샷 2022-12-24 오전 1 05 48" src="https://user-images.githubusercontent.com/107785279/209365216-83beb45a-0b66-45de-9654-8092b59b2c6e.png">
+
+
+<img width="951" alt="스크린샷 2022-12-24 오전 1 06 18" src="https://user-images.githubusercontent.com/107785279/209365284-bac86f7a-6270-4651-9d4d-0ac432bf2e1f.png">
+
+
+
+<img width="975" alt="스크린샷 2022-12-24 오전 1 06 39" src="https://user-images.githubusercontent.com/107785279/209365299-f22c2723-bc62-48cd-b08d-430e604a1c4f.png">
+
+<img width="986" alt="스크린샷 2022-12-24 오전 1 07 26" src="https://user-images.githubusercontent.com/107785279/209365315-8748154b-1785-4d27-a21d-c4b4520b8664.png">
+
+
+
+---
+
+#  Convention
+| **Git Convention** |
+```text
+Git Convention
+feat : 기능추가
+fix : 버그 수정
+refactor : 리팩토링, 기능은 그대로 두고 코드를 수정
+style : formatting, 세미콜론 추가 / 코드 변경은 없음
+chore : 라이브러리 설치, 빌드 작업 업데이트
+docs : 주석 추가 삭제, 문서 변경
+```
