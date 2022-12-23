@@ -1,6 +1,8 @@
 package com.example.securityjwt_pratice.config;
 
 import com.example.securityjwt_pratice.config.jwt.JwtAuthenticationFilter;
+import com.example.securityjwt_pratice.config.jwt.JwtAuthorizationFilter;
+import com.example.securityjwt_pratice.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final CorsConfig corsConfig;
+    private final MemberRepository memberRepository;
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
@@ -34,11 +37,11 @@ public class SecurityConfig {
             .and()
             .formLogin().disable()
             .httpBasic().disable() // 매번 요청마다 ID,PW를 들고오기 때문에 보안 취약
-            .authorizeRequests(authroize -> authroize.antMatchers("/api/v1/user/**")
+            .authorizeRequests(authroize -> authroize.antMatchers("/api/user/**")
                 .access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/api/v1/manager/**")
+                .antMatchers("/api/manager/**")
                 .access("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
-                .antMatchers("/api/v1/admin/**")
+                .antMatchers("/api/admin/**")
                 .access("hasRole('ROLE_ADMIN')")
                 .anyRequest().permitAll())
             .build();
@@ -50,11 +53,10 @@ public class SecurityConfig {
             AuthenticationManager authenticationManager = http.getSharedObject(AuthenticationManager.class);
             http
                 .addFilter(corsConfig.corsFilter())
-                .addFilter(new JwtAuthenticationFilter(authenticationManager));
+                .addFilter(new JwtAuthenticationFilter(authenticationManager))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager,memberRepository));
         }
     }
-
-
 }
 
 
