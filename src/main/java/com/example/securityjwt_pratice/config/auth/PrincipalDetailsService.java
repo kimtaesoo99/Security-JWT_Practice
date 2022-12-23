@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-//http://loaclhost:8080/login
+//http://loaclhost:8080/login -> 여기서 동작 안함
 @Service
 @RequiredArgsConstructor
 public class PrincipalDetailsService implements UserDetailsService {
