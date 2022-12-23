@@ -52,5 +52,13 @@ public class RestApiController {
         memberRepository.save(member);
         return "회원가입완료";
     }
+    @PostMapping("join/admin")
+    public String joinOfAdmin(@RequestBody Member member) {
+        member.setPassword(bCryptPasswordEncoder.encode(member.getPassword()));
+        member.setRoles("ROLE_ADMIN");
+        memberRepository.save(member);
+        return "어드민회원가입완료";
+    }
+
 
 }
